@@ -9,7 +9,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Marek Kowalski <marek.kowalski@rumblefish.dev>",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/rumblefishdev/rf-lerna.git"
+  },
   "license": "ISC",
   "dependencies": {
     "@lerna/cli": "^3.18.5",
