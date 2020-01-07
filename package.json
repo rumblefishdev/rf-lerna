@@ -1,6 +1,6 @@
 {
   "name": "rf-lerna",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "main": "index.js",
   "bin": {
@@ -11,8 +11,8 @@
   },
   "author": "Marek Kowalski <marek.kowalski@rumblefish.dev>",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/rumblefishdev/rf-lerna.git"
+    "type": "git",
+    "url": "https://github.com/rumblefishdev/rf-lerna.git"
   },
   "license": "ISC",
   "dependencies": {
