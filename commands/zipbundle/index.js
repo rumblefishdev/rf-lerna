@@ -87,9 +87,6 @@ class ZipBundleCommand extends Command {
   }
 
   async packOnePackage(pkg) {
-    if (this.options.requireScripts) {
-      await this.execScript(pkg, "prepublish")
-    }
     const opts = {}
     const packed = await packDirectory(pkg, pkg.location, opts)
     return packed
