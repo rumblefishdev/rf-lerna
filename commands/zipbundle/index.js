@@ -78,7 +78,7 @@ class ZipBundleCommand extends Command {
 
   createZipFile(workdir, target) {
     const cmd = 'zip'
-    const args = [target, '.']
+    const args = ['-FSr', target, '.']
     const opts = {
       cwd: `${workdir}/package`
     }
