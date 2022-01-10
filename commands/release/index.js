@@ -14,7 +14,7 @@ class ReleaseCommand extends Command {
   async initialize() {}
 
   async execute() {
-    inquirer
+    return inquirer
       .prompt({
         type: 'list',
         name: 'package',
