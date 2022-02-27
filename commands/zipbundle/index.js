@@ -39,12 +39,15 @@ class ZipBundleCommand extends Command {
   }
 
   async execute() {
-    while (this.todoPackages.length > 0) {
-      const pkg = this.packageGraph.get(this.todoPackages.pop().name)
+    for (const pkgTodo of this.todoPackages) {
+      const pkg = this.packageGraph.get(pkgTodo.name)
       pkg.packed = await this.packOnePackage(pkg)
       this.packed[pkg.name] = pkg
-      await this.updateLocalDependencies(pkg)
       log.info('PackCommand.execute', 'Packaged %s to %s', pkg.name, pkg.packed.tarFilePath)
+    }
+    for (const pkgTodo of this.todoPackages) {
+      const pkg = this.packageGraph.get(pkgTodo.name)
+      await this.updateLocalDependencies(pkg)
     }
     const workdir = await this.installDependencies()
     const target = this.getTarget()
