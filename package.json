@@ -21,6 +21,7 @@
     "@lerna/output": "^3.13.0",
     "@lerna/pack-directory": "^3.16.4",
     "@lerna/validation-error": "^3.13.0",
+    "@lerna/version": "4.0.0",
     "npmlog": "^4.1.2",
     "tar": "^5.0.5",
     "tempy": "^0.3.0",
