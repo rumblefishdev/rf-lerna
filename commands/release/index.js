@@ -1,7 +1,7 @@
 /* global require module */
 
-const Command = require("@lerna/command");
-const versionCommand = require("@lerna/version");
+const { Command } = require("@lerna/command");
+const VersionCommand = require("@lerna/version");
 const inquirer = require('inquirer');
 const execSync = require('child_process').execSync;
 
@@ -20,8 +20,6 @@ const versionArguments = {
   lernaVersion: '0.4.0',
   '$0': 'rf-lerna'
 }
-  
-  
 
 class ReleaseCommand extends Command {
   regex = /^ghp_[A-Za-z0-9]{36}$/
@@ -90,13 +88,13 @@ class ReleaseCommand extends Command {
         choices: ['pre-release', 'release'],
       }).then((ver) => {
         if(ver['release'] === 'pre-release') {
-          versionCommand({
+          VersionCommand({
             ...versionArguments,
             'force-publish': packageName,
             forcePublish: packageName,
           })
         } else {
-          versionCommand({
+          VersionCommand({
             ...versionArguments,
             'force-publish': packageName,
             forcePublish: packageName,
@@ -114,7 +112,7 @@ class ReleaseCommand extends Command {
         choices: ['pre-release', 'release'],
       }).then((ver) => {
         if(ver['release'] === 'pre-release') {
-          versionCommand({
+          VersionCommand({
             ...versionArguments,
             'force-publish': packageName,
             forcePublish: packageName,
@@ -122,7 +120,7 @@ class ReleaseCommand extends Command {
             conventionalPrerelease: packageName,
           })
         } else {
-          versionCommand({
+          VersionCommand({
             ...versionArguments,
             'force-publish': packageName,
             forcePublish: packageName,
