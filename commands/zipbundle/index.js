@@ -3,15 +3,15 @@
 const util = require("util");
 const path = require('path');
 const log = require("npmlog");
-const Command = require("@lerna/command");
-const packDirectory = require("@lerna/pack-directory");
-const output = require("@lerna/output");
+const { Command } = require("@lerna/command");
+const { packDirectory } = require("@lerna/pack-directory");
+const { output } = require("@lerna/output");
 const tar = require("tar");
 const fs = require('fs')
 const tempy = require("tempy");
 const ChildProcessUtilities = require("@lerna/child-process");
 
-const ValidationError = require("@lerna/validation-error");
+const { ValidationError } = require("@lerna/validation-error");
 module.exports = factory;
 
 function factory(argv) {

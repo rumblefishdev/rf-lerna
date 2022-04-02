@@ -1,6 +1,7 @@
 /* global require module */
 
-const Command = require("@lerna/command");
+const { Command } = require("@lerna/command");
+const VersionCommand = require("@lerna/version");
 const inquirer = require('inquirer');
 const execSync = require('child_process').execSync;
 
@@ -8,6 +9,16 @@ module.exports = factory;
 
 function factory(argv) {
   return new ReleaseCommand(argv);
+}
+
+const versionArguments = {
+  _: [ 'version' ],
+  'create-release': 'github',
+  createRelease: 'github',
+  'ignore-changes': [ '*' ],
+  ignoreChanges: [ '*' ],
+  lernaVersion: '0.4.0',
+  '$0': 'rf-lerna'
 }
 
 class ReleaseCommand extends Command {
@@ -77,9 +88,19 @@ class ReleaseCommand extends Command {
         choices: ['pre-release', 'release'],
       }).then((ver) => {
         if(ver['release'] === 'pre-release') {
-          execSync(`lerna version  --force-publish=${packageName} --create-release github --ignore-changes '*'`, {stdio: 'inherit'});
+          VersionCommand({
+            ...versionArguments,
+            'force-publish': packageName,
+            forcePublish: packageName,
+          })
         } else {
-          execSync(`lerna version  --force-publish=${packageName} --conventional-graduate=${packageName} --create-release github --ignore-changes '*'`, {stdio: 'inherit'});
+          VersionCommand({
+            ...versionArguments,
+            'force-publish': packageName,
+            forcePublish: packageName,
+            'conventional-graduate': packageName,
+            conventionalGraduate: packageName,
+          })
         }
       }).catch((error) => this.logError(error))
     } else {
@@ -91,9 +112,19 @@ class ReleaseCommand extends Command {
         choices: ['pre-release', 'release'],
       }).then((ver) => {
         if(ver['release'] === 'pre-release') {
-          execSync(`lerna version  --force-publish=${packageName} --conventional-prerelease=${packageName} --create-release github --ignore-changes '*'`, {stdio: 'inherit'});
+          VersionCommand({
+            ...versionArguments,
+            'force-publish': packageName,
+            forcePublish: packageName,
+            'conventional-prerelease': packageName,
+            conventionalPrerelease: packageName,
+          })
         } else {
-          execSync(`lerna version  --force-publish=${packageName} --create-release github --ignore-changes '*'`, {stdio: 'inherit'});
+          VersionCommand({
+            ...versionArguments,
+            'force-publish': packageName,
+            forcePublish: packageName,
+          })
         }
       }).catch((error) => this.logError(error))
     }
