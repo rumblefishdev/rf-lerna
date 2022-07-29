@@ -71,7 +71,7 @@ class ZipBundleCommand extends Command {
       cwd: workdir
     })
     const cmd = 'npm'
-    const args = ['install', '--only=production']
+    const args = ['install', '--production', '--ignore-scripts']
     const opts = {
       cwd: `${workdir}/package`
     }
