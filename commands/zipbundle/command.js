@@ -18,7 +18,7 @@ module.exports.builder = yargs => {
       describe: 'zipfile target to build',
       type: 'string'
     },
-    legacyPeer: {
+    "legacy-peer-deps": {
       describe: 'restores peerDependency installation behavior from npm < 7',
     },
   })

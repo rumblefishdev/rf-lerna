@@ -21,5 +21,5 @@ This creates a zip file that has node_modules inside with all the depenendencies
 Legacy peer flag restores peerDependency installation behavior from npm version <7:
 
 ```
-$ rf-lerna zipbundle @xxx/admin-api  --target admin-api.zip --legacyPeer
+$ rf-lerna zipbundle @xxx/admin-api  --target admin-api.zip --legacy-peer-deps
 ```
