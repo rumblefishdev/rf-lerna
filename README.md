@@ -17,3 +17,9 @@ Usage examples:
 
 This creates a zip file that has node_modules inside with all the depenendencies installed
 (local and external). This is a format required by AWS Lambda handlers.
+
+Legacy peer flag restores peerDependency installation behavior from npm version <7:
+
+```
+$ rf-lerna zipbundle @xxx/admin-api  --target admin-api.zip --legacyPeer
+```
