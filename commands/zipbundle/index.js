@@ -62,7 +62,6 @@ class ZipBundleCommand extends Command {
     return path.resolve(`${this.package.name}-${this.package.version}.zip`)
   }
   async installDependencies() {
-
     const pkg = this.packageGraph.get(this.package.name)
     const workdir = tempy.directory()
     log.info('PackCommand.installDependencies', 'Installing dependencies in', workdir)
@@ -70,6 +69,18 @@ class ZipBundleCommand extends Command {
       file: pkg.packed.tarFilePath,
       cwd: workdir
     })
+    const packageLockJsonPath = path.join(pkg.location, 'package-lock.json');
+    const packageLockJsonExists = fs.existsSync(packageLockJsonPath);
+    if (packageLockJsonExists) {
+      log.info('PackCommand.installDependencies', 'Copying package-lock.json to', `${workdir}/package`)
+      fs.copyFileSync(packageLockJsonPath, `${workdir}/package/package-lock.json`)
+    } else {
+      log.info(
+        'PackCommand.installDependencies',
+        'package-lock.json doesn\'t exists under path',
+        packageLockJsonPath)
+    }
+
     const cmd = 'npm'
     const args = ['install', '--production', '--ignore-scripts']
     if(this.options.legacyPeerDeps) {
