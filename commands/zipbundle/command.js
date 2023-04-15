@@ -17,7 +17,10 @@ module.exports.builder = yargs => {
     target: {
       describe: 'zipfile target to build',
       type: 'string'
-    }
+    },
+    "legacy-peer-deps": {
+      describe: 'restores peerDependency installation behavior from npm < 7',
+    },
   })
   yargs.check(argv => {
     if (argv.target && ! argv.target.match(/.zip$/)) {

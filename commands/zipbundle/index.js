@@ -72,6 +72,9 @@ class ZipBundleCommand extends Command {
     })
     const cmd = 'npm'
     const args = ['install', '--production', '--ignore-scripts']
+    if(this.options.legacyPeerDeps) {
+      args.push('--legacy-peer-deps')
+    }
     const opts = {
       cwd: `${workdir}/package`
     }
